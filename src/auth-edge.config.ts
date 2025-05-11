@@ -1,9 +1,6 @@
 import type { NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
-import Resend from "next-auth/providers/resend";
 
 export default {
-  providers: [Google, Resend({
-    from: process.env.RESEND_FROM_EMAIL,
-  })],
+  providers: [Google],
 } satisfies NextAuthConfig;

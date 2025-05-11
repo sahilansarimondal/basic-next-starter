@@ -1,4 +1,4 @@
 import NextAuth from "next-auth";
-import authConfig from "./auth.config";
+import authEdgeConfig from "./auth-edge.config";
 
-export const { auth: middleware } = NextAuth(authConfig);
+export const { auth: middleware } = NextAuth(authEdgeConfig);

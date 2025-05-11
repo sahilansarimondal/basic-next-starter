@@ -1,6 +1,6 @@
 import { signIn } from "@/auth";
 
-export default function SignIn() {
+export default function GoogleOAuth() {
   return (
     <form
       action={async () => {
