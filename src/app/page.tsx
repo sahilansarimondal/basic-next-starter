@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import { CredentialsAuth } from "@/components/credentials-sign-in";
+import { CredentialsSignUp } from "@/components/credentials-sign-up";
 import { EamilLinkAuth } from "@/components/email-sign-in";
 import GoogleOAuth from "@/components/google-oauth";
 import { SignOut } from "@/components/logout";
@@ -16,6 +17,7 @@ export default async function Home() {
           <p className="text-lg">{session.user.email}</p>
         </div>
       )}
+      <CredentialsSignUp />
       <CredentialsAuth />
       <EamilLinkAuth />
       <GoogleOAuth />

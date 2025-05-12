@@ -1,4 +1,5 @@
 import { prisma } from "@/prisma";
+import { sendEmail } from "./resendEmail";
 
 export const getUserFromDb = async (email: string, password: string) => {
   // Simulate a database call
@@ -26,5 +27,8 @@ export const createUser = async (formData: FormData) => {
       password,
     },
   });
+
+  await sendEmail(email);
+
   return user;
 };
