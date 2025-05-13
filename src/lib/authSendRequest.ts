@@ -1,4 +1,13 @@
-export async function sendVerificationRequest(params: any) {
+import { EmailProviderSendVerificationRequestParams } from "next-auth/providers";
+
+interface EamilTheme {
+  brandColor?: string;
+  buttonText?: string;
+}
+
+export async function sendVerificationRequest(
+  params: EmailProviderSendVerificationRequestParams
+) {
   const { identifier: to, provider, url, theme } = params;
   const { host } = new URL(url);
 
@@ -21,7 +30,7 @@ export async function sendVerificationRequest(params: any) {
     throw new Error("Resend error: " + JSON.stringify(await res.json()));
 }
 
-function html(params: { url: string; host: string; theme: any }) {
+function html(params: { url: string; host: string; theme: EamilTheme }) {
   const { url, host, theme } = params;
 
   const escapedHost = host.replace(/\./g, "&#8203;.");

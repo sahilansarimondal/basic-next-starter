@@ -20,12 +20,12 @@ async function verifyOTP(formData: FormData) {
   }
 }
 
-export default function VerificationPage({
+export default async function VerificationPage({
   searchParams,
 }: {
-  searchParams: { email: string };
+  searchParams: Promise<{ email: string }>;
 }) {
-  const email = searchParams.email;
+  const { email } = await searchParams;
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-md">
@@ -40,7 +40,14 @@ export default function VerificationPage({
 
         <form action={verifyOTP} className="mt-8 space-y-6">
           <div>
-            <input type="email" name="email" value={email || ""} hidden />
+            <input
+              type="email"
+              name="email"
+              value={email}
+              // defaultValue={""}
+              readOnly
+              hidden
+            />
             <label htmlFor="otp" className="sr-only">
               Verification Code
             </label>

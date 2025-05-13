@@ -1,7 +1,6 @@
 // lib/otp.ts
 
 import { prisma } from "@/prisma";
-import { redirect } from "next/navigation";
 
 export function generateOTP(length = 6) {
   return Array.from({ length }, () => Math.floor(Math.random() * 10)).join("");

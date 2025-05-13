@@ -4,7 +4,6 @@ import Resend from "next-auth/providers/resend";
 import { sendVerificationRequest } from "./lib/authSendRequest";
 import Credentials from "next-auth/providers/credentials";
 import { getUserFromDb } from "./lib/userAction";
-import { createHashedPassword } from "./lib/comparePassword";
 
 export default {
   providers: [

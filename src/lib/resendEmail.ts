@@ -25,5 +25,3 @@ export async function sendEmail(email: string) {
     return;
   }
 }
-
-const generateOtp = () => {};
