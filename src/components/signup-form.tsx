@@ -10,10 +10,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import GoogleOAuthButton from "./google-oauth";
-import { signIn } from "@/auth";
+import { createUser } from "@/lib/userAction";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 
-export function LoginForm({
+export function SignupForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -22,7 +23,7 @@ export function LoginForm({
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Welcome back</CardTitle>
-          <CardDescription>Login with your Google account</CardDescription>
+          <CardDescription>Signup with your Google account</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-6">
@@ -37,10 +38,27 @@ export function LoginForm({
             <form
               action={async (formData) => {
                 "use server";
-                await signIn("credentials", formData);
+                const user = await createUser(formData);
+
+                if (user) {
+                  const emailEncoded = encodeURIComponent(
+                    formData.get("email") as string
+                  );
+                  redirect(`/email-verification?email=${emailEncoded}`);
+                }
               }}
             >
               <div className="grid gap-6">
+                <div className="grid gap-3">
+                  <Label htmlFor="name">Name</Label>
+                  <Input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
                 <div className="grid gap-3">
                   <Label htmlFor="email">Email</Label>
                   <Input
@@ -75,8 +93,8 @@ export function LoginForm({
             </form>
             <div className="text-center text-sm">
               Don&apos;t have an account?{" "}
-              <Link href="/signup" className="underline underline-offset-4">
-                Sign up
+              <Link href="/login" className="underline underline-offset-4">
+                Log in
               </Link>
             </div>
           </div>
