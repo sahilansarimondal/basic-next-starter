@@ -3,10 +3,11 @@ import React from "react";
 import { Button } from "./ui/button";
 import NavigationMenu from "./navigation-menu";
 import { ModeToggle } from "./mode-toggle";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <div className=" flex justify-between px-6 sticky top-0 z-50">
+    <div className=" flex justify-between px-6 w-full sticky top-0 bg-white/95 dark:bg-black/60 shadow-sm z-50">
       <div className=" flex gap-4 py-3">
         {" "}
         <a href="#" className="flex items-center gap-2 self-center font-medium">
@@ -21,8 +22,12 @@ const Navbar = () => {
       </div>
       <div className="flex gap-4 py-3">
         <ModeToggle />
-        <Button variant={"outline"}>Log In</Button>
-        <Button>Sign Up</Button>
+        <Link href={"/login"}>
+          <Button variant={"outline"}>Log In</Button>
+        </Link>
+        <Link href={"/signup"}>
+          <Button>Sign Up</Button>
+        </Link>
       </div>
     </div>
   );

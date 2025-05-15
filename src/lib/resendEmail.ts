@@ -1,8 +1,10 @@
+"use server";
+
 import { EmailTemplate } from "@/components/email-template";
 import { Resend } from "resend";
 import { createOTP } from "./otp";
 
-const resend = new Resend(process.env.AUTH_RESEND_KEY);
+const resend = new Resend(process.env.AUTH_RESEND_KEY!);
 
 export async function sendEmail(email: string) {
   try {

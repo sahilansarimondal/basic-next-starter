@@ -1,12 +1,17 @@
 import React from "react";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 const NavigationMenu = () => {
   return (
     <div>
-      <Button variant={"ghost"}>Products</Button>
+      <Link href={"/#features"}>
+        <Button variant={"ghost"}>Features</Button>
+      </Link>
       <Button variant={"ghost"}>Docs</Button>
-      <Button variant={"ghost"}>Pricing</Button>
+      <Link href={"/#pricing"}>
+        <Button variant={"ghost"}>Pricing</Button>
+      </Link>
     </div>
   );
 };
